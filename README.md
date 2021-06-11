@@ -6,6 +6,7 @@
   <br>
 </h1>
 
+<h3 align="center">proxy urls</h3>
 <h4 align="center">proxy urls(absolute) from stdin through your favorite proxy tool</h4>
 
 <p align="center">
@@ -32,13 +33,13 @@ $ purl -h
 
 | Flag | Description | Example |
 |------|-------------|---------|
-| `-p` | specify http proxy | `cat resovled.txt | purl -p http://127.0.0.1:8080` |
-| `-h` | specify header/s to include in request. supports duplicate headers | `cat resovled.txt | purl -p http://127.0.0.1:8080 -h X-Forwarded-For: google.com -h X-Wife: wifeyyyy` |
-| `-H` | specify the path of the list of headers to use | `cat resovled.txt | purl -p http://127.0.0.1:8080 -H headers.txt` |
-| `-b` | specify cookie VALUE to include in request | `cat resovled.txt | purl -p http://127.0.0.1:8080 -b "cookie value"` |
-| `-B` | specify file path that contains the cookie VALUE to include in request. Reads up to 1mb of data | `cat resovled.txt | purl -p http://127.0.0.1:8080 -B cookie.txt` |
-| `-c` | set the concurrency. Default value 1. Important information about using this can be found below | `cat resovled.txt | purl -p http://127.0.0.1:8080 -c 5` |
-| `-t` | set the timeout in milliseconds. Default 10000 | `cat resovled.txt | purl -p http://127.0.0.1:8080 -t 100000` |
+| `-p` | specify http proxy | `cat resovled.txt \| purl -p http://127.0.0.1:8080` |
+| `-h` | specify header/s to include in request. supports duplicate headers | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -h X-Forwarded-For: google.com -h X-Wife: wifeyyyy` |
+| `-H` | specify the path of the list of headers to use | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -H headers.txt` |
+| `-b` | specify cookie VALUE to include in request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -b "cookie value"` |
+| `-B` | specify file path that contains the cookie VALUE to include in request. Reads up to 1mb of data | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -B cookie.txt` |
+| `-c` set the concurrency. Default value 1. Important information about using this can be found below | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -c 5` |
+| `-t` | set the timeout in milliseconds. Default 10000 | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -t 100000` |
 
 ## Installation:
 ```
