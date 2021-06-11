@@ -16,7 +16,7 @@
 
 # Resources
 - [Usage](#usage)
-- [Important](#important)
+- [Important](#warningwarningimportantwarningwarning)
 - [Installation](#installation)
 
 ## Usage:
