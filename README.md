@@ -14,6 +14,8 @@
   <img src="https://img.shields.io/badge/release-v0.9-blue">
 </p>
 
+Made this with the intent to learn go and because I wanted it but couldn't really find a standalone tool that does this. Any advice and contribution is welcomed.
+
 ## Contents
 - [Usage](#usage)
 - [Important](#warningwarningimportantwarningwarning)
