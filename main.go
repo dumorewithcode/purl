@@ -108,7 +108,7 @@ func (r requestData) makeRequest(url string) {
 		for _, header := range r.headers {
 			//Split by first occurence of colon(:), any other colons after that will be ignored
 			name, value := header[:strings.IndexByte(header, ':')], header[strings.IndexByte(header, ':')+1:]
-			req.Header.Set(name, strings.TrimSpace(value))
+			req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
 		}
 	}
 
@@ -128,7 +128,7 @@ func (r requestData) makeRequest(url string) {
 			if r.headerFromFile != "" {
 				//Split by first occurence of colon(:), any other colons after that will be ignored
 				name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
-				req.Header.Set(name, strings.TrimSpace(value))
+				req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
 			}
 			resp, err := r.client.Do(req)
 			if err != nil {
