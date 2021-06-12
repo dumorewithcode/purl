@@ -130,6 +130,7 @@ func (r requestData) makeRequest(url string) {
 				name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
 				req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
 			}
+
 			resp, err := r.client.Do(req)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "%s\n", err)
