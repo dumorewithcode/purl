@@ -27,7 +27,8 @@ Examples:
 
 ```bash
 $ echo http://example.com | purl -p http://127.0.0.1:8080
-$ cat resolved.txt | purl -p http://127.0.0.1:8080
+$ cat domains.txt | httprobe --prefer-https -c 50 | waybackurls | purl -p http://127.0.0.1:8080
+$ cat resolved.txt | gau -b png,jpg,gif | purl -p http://127.0.0.1:8080
 ```
 
 To display the help for the tool use the `-help` flag:
