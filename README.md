@@ -7,7 +7,7 @@
 </h1>
 
 <h2 align="center">proxy urls</h2>
-<h4 align="center">A simple but very fast script to proxy full urls from stdin through your favorite proxy tool for analysis</h4>
+<h4 align="center">A simple script to proxy full urls from stdin through your favorite proxy tool very quickly for analysis</h4>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
