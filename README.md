@@ -14,12 +14,13 @@
   <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v0.9-blue"></a>
 </p>
 
-Made this with the intent to learn go and because I wanted it but couldn't find a standalone tool that does this quickly. Any advice and contribution is welcomed.
+<p align="center">
+  <a href="#usage">Usage</a> •
+  <a href="#warningwarningimportantwarningwarning">Important</a> •
+  <a href="#installation">Installation</a> •
+</p>
 
-## Contents
-- [Usage](#usage)
-- [Important](#warningwarningimportantwarningwarning)
-- [Installation](#installation)
+Made this with the intent to learn go and because I wanted it but couldn't find a standalone tool that does this quickly. Any advice and contribution is welcomed.
 
 ## Usage:
 Examples:
