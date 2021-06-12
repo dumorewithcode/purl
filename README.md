@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
-  <img src="https://img.shields.io/badge/release-v0.9-blue">
+  <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v0.9-blue"></a>
 </p>
 
 Made this with the intent to learn go and because I wanted it but couldn't really find a standalone tool that does this. Any advice and contribution is welcomed.
