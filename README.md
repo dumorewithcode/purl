@@ -17,7 +17,7 @@
 <p align="center">
   <a href="#usage">Usage</a> •
   <a href="#warningwarningimportantwarningwarning">Important</a> •
-  <a href="#installation">Installation</a> •
+  <a href="#installation">Installation</a>
 </p>
 
 Made this with the intent to learn go and because I wanted it but couldn't find a standalone tool that does this quickly. Any advice and contribution is welcomed.
