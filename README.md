@@ -20,7 +20,7 @@
   <a href="#installation">Installation</a>
 </p>
 
-Made this with the intent to learn go and because I wanted it and couldn't find a standalone tool that does this quickly. Any advice and contribution is welcomed.
+Made this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quickly. Any advice and contribution is welcomed.
 
 ## Usage:
 Examples:
