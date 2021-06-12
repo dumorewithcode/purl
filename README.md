@@ -7,14 +7,14 @@
 </h1>
 
 <h2 align="center">proxy urls</h2>
-<h4 align="center">a simple standalone script to proxy full urls from stdin through your favorite proxy tool at the "speed of light" for analysis</h4>
+<h4 align="center">a simple but very fast script to proxy full urls from stdin through your favorite proxy tool for analysis</h4>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
   <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v0.9-blue"></a>
 </p>
 
-Made this with the intent to learn go and because I wanted it but couldn't really find a standalone tool that does this. Any advice and contribution is welcomed.
+Made this with the intent to learn go and because I wanted it but couldn't really find a standalone tool that does this quickly. Any advice and contribution is welcomed.
 
 ## Contents
 - [Usage](#usage)
