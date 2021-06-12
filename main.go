@@ -139,7 +139,7 @@ func (r requestData) makeRequest(url string) {
 			io.Copy(ioutil.Discard, resp.Body)
 		}
 		if err := sc.Err(); err != nil {
-			fmt.Fprintf(os.Stderr, "error reading value from headers file: %s\n", err)
+			fmt.Fprintf(os.Stderr, "%s\n", err)
 		}
 	}
 	resp, err := r.client.Do(req)
