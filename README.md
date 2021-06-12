@@ -26,7 +26,7 @@ Made this with the intent to learn go and because I wanted it but couldn't find 
 Examples:
 
 ```bash
-$ echo http://example.com | purl -p http://127.0.0.1:8080
+$ cat urls.txt | purl -p http://127.0.0.1:8080
 $ cat domains.txt | httprobe --prefer-https -c 50 | waybackurls | purl -p http://127.0.0.1:8080
 $ cat resolved.txt | gau -b png,jpg,gif | purl -p http://127.0.0.1:8080
 ```
