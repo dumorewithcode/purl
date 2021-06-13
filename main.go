@@ -159,8 +159,8 @@ func main() {
 		cookie         string
 		cookieFromFile string
 		headers        duplicateFlags
-		headersFile    string
-		timeout        int
+		//headersFile    string
+		timeout int
 	)
 
 	flag.Var(&headers, "h", "specify header to include in request")
@@ -168,7 +168,7 @@ func main() {
 	flag.StringVar(&proxy, "p", "", "specify http proxy")
 	flag.StringVar(&cookie, "b", "", "specify cookie VALUE to include in request")
 	flag.StringVar(&cookieFromFile, "B", "", "specify file that contains the cookie VALUE to include in request. Reads up to 1mb of data")
-	flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
+	//flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
 	flag.IntVar(&timeout, "t", 10000, "set the timeout in milliseconds")
 
 	flag.Parse()
@@ -198,9 +198,9 @@ func main() {
 	}
 
 	req := requestData{
-		client:         *client,
-		headers:        headers,
-		headersFile:    headersFile,
+		client:  *client,
+		headers: headers,
+		//headersFile:    headersFile,
 		cookie:         cookie,
 		cookieFromFile: getCookieFromFile(cookieFromFile),
 	}
