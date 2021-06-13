@@ -106,7 +106,7 @@ func (r requestData) makeRequest(url string) {
 
 	if len(r.headers) > 0 {
 		for _, header := range r.headers {
-			//Split by first occurence of colon(:), any other colons after that will be ignored
+			//Split by first occurrence of colon(:), any other colons after that will be ignored
 			name, value := header[:strings.IndexByte(header, ':')], header[strings.IndexByte(header, ':')+1:]
 			req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
 		}

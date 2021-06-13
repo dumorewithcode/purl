@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
-  <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v0.9-blue"></a>
+  <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v1.0-blue"></a>
 </p>
 
 <p align="center">
