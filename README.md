@@ -19,8 +19,11 @@
   <a href="#warningwarningimportantwarningwarning">Important</a> •
   <a href="#installation">Installation</a>
 </p>
+<br />
 
 Wrote this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quick enough. Any advice and contribution is much appreciated.
+<br />
+<br />
 
 ## Usage:
 Examples:
