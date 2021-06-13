@@ -14,7 +14,7 @@
   <a href="https://github.com/a3kSec/purl/releases"><img src="https://img.shields.io/badge/release-v1.0-blue"></a>
   <a href="https://golang.org/"><img src="https://img.shields.io/badge/powered_by-go-6362c2.svg?style=flat"></a>
   <a href="https://goreportcard.com/report/github.com/a3kSec/purl"><img src="https://img.shields.io/badge/go%20report-A%2B-success"></a>
-  <a href="https://github.com/a3kSec/purl/releases#download"><img src="https://img.shields.io/badge/platform-any-ec2eb4.svg?style=flat"></a>
+  <a href="https://github.com/a3kSec/purl#download"><img src="https://img.shields.io/badge/platform-any-ec2eb4.svg?style=flat"></a>
 </p>
 
 <p align="center">
