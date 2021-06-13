@@ -20,7 +20,7 @@
   <a href="#installation">Installation</a>
 </p>
 
-Wrote this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quick enough. Any advice and contribution is much appreciated.\
+Wrote this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quick enough. Any advice and contribution is much appreciated.
 
 ## Usage:
 Examples:
@@ -30,8 +30,8 @@ $ cat urls.txt | purl -p http://127.0.0.1:8080
 $ cat domains.txt | httprobe --prefer-https -c 50 | waybackurls | purl -p http://127.0.0.1:8080
 $ cat resolved.txt | gau -b png,jpg,gif | purl -p http://127.0.0.1:8080
 ```
-
-To display the help for the tool use the `-help` flag:
+\
+To display the help for the tool use the `-help` flag or pass any flag without a value:
 
 ```bash
 $ purl -help
@@ -41,7 +41,7 @@ $ purl -help
 |------|-------------|---------|
 | `-p` | specify http proxy | `cat resovled.txt \| purl -p http://127.0.0.1:8080` |
 | `-h` | specify header/s to include in request. supports duplicate flags | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -h "X-Forwarded-For: example.com" -h "X-Wife: wifeyyyy"` |
-| `-H` | specify the path to the list of headers to use. This will resend the request but with the next header in the file. Use -h flags for headers you want to include in every request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -H headers.txt` |
+| `-H` | specify the path to the list of headers to use. This will resend the request but with the next header in the file. Use -h flag for headers you want to include in every request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -H headers.txt` |
 | `-b` | specify cookie VALUE to include in request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -b "cookie value"` |
 | `-B` | specify file path that contains the cookie VALUE to include in request. Reads up to 1mb of data | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -B cookie.txt` |
 | `-c` | set the concurrency. Default value 1. Use this setting to increase the rate at which the urls are sent to your proxy tool. Important information about using this can be found below | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -c 5` |
