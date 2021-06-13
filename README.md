@@ -20,7 +20,7 @@
   <a href="#installation">Installation</a>
 </p>
 
-Made this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quick enough. Any advice and contribution is much appreciated.\
+Wrote this with the intent to learn go and because I wanted it and couldn't find a standalone tool that sends urls through proxy tools quick enough. Any advice and contribution is much appreciated.\
 Supports http/2
 
 ## Usage:
@@ -52,7 +52,7 @@ $ purl -help
 Default concurrency value is set to 1. This is a safegaurd against any proxy tools that have live auditing features.\
 Setting this value too high will cause any proxy tools with these features to consume alot if not all of your system resources in the blink of an eye if there are no resource limits set for these tools.
 So please use with caution.\
-I recommend playing with the concurrency setting and turning on/off any live auditing/passive crawl features to see what you're comfortable with.
+I recommend playing with the concurrency setting and turning on/off any live auditing/passive crawl features while monitoring the resource usage of your proxy tool to see what you're comfortable with.
 
 ## Installation:
 ```
