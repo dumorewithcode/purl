@@ -36,7 +36,7 @@ func (dupes *duplicateFlags) Set(value string) error {
 	return nil
 }
 
-//Stolen from gau. Thanks Corben :)
+//getUserAgent() Stolen from gau. Thanks Corben :)
 func getUserAgent() string {
 	userAgents := []string{
 		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:40.0) Gecko/20100101 Firefox/40.0",
@@ -181,7 +181,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Stolen from httprobe. Thanks Tom :)
+	// timeout Stolen from httprobe. Thanks Tom :)
 	to := time.Duration(timeout * 1000000)
 
 	client := &http.Client{
