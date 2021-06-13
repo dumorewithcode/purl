@@ -112,37 +112,11 @@ func (r requestData) makeRequest(url string) {
 		}
 	}
 
-	// Open headers file for reading, and resend the request but with the next header in line
-	if r.headersFile != "" {
-		file, err := os.Open(r.headersFile)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s\n", err)
-			os.Exit(1)
-		}
-		defer file.Close()
-
-		sc := bufio.NewScanner(file)
-
-		for sc.Scan() {
-			r.headerFromFile = sc.Text()
-			if r.headerFromFile != "" {
-				//Split by first occurence of colon(:), any other colons after that will be ignored
-				name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
-				req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
-			}
-
-			resp, err := r.client.Do(req)
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "%s\n", err)
-				return
-			}
-			defer resp.Body.Close()
-			io.Copy(ioutil.Discard, resp.Body)
-		}
-		if err := sc.Err(); err != nil {
-			fmt.Fprintf(os.Stderr, "%s\n", err)
-		}
+	if r.headerFromFile != "" {
+		name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
+		req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
 	}
+
 	resp, err := r.client.Do(req)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
@@ -159,8 +133,8 @@ func main() {
 		cookie         string
 		cookieFromFile string
 		headers        duplicateFlags
-		//headersFile    string
-		timeout int
+		headersFile    string
+		timeout        int
 	)
 
 	flag.Var(&headers, "h", "specify header to include in request")
@@ -168,7 +142,7 @@ func main() {
 	flag.StringVar(&proxy, "p", "", "specify http proxy")
 	flag.StringVar(&cookie, "b", "", "specify cookie VALUE to include in request")
 	flag.StringVar(&cookieFromFile, "B", "", "specify file that contains the cookie VALUE to include in request. Reads up to 1mb of data")
-	//flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
+	flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
 	flag.IntVar(&timeout, "t", 10000, "set the timeout in milliseconds")
 
 	flag.Parse()
@@ -198,9 +172,9 @@ func main() {
 	}
 
 	req := requestData{
-		client:  *client,
-		headers: headers,
-		//headersFile:    headersFile,
+		client:         *client,
+		headers:        headers,
+		headersFile:    headersFile,
 		cookie:         cookie,
 		cookieFromFile: getCookieFromFile(cookieFromFile),
 	}
@@ -223,7 +197,27 @@ func main() {
 			// 'defer func() { <-queue }()' will empty this request's position in the buffer(queue)
 			// and send a new request to the buffer(queue)
 			defer func() { <-queue }()
-			req.makeRequest(url)
+
+			//Open headers file for reading, and resend the request but with the next header in line
+			if req.headersFile != "" {
+				file, err := os.Open(req.headersFile)
+				if err != nil {
+					fmt.Fprintf(os.Stderr, "%s\n", err)
+					os.Exit(1)
+				}
+				defer file.Close()
+
+				sc := bufio.NewScanner(file)
+
+				//Send the same request for each header in the headers file(-H flag)
+				for sc.Scan() {
+					req.headerFromFile = sc.Text()
+					req.makeRequest(url)
+				}
+				if err := sc.Err(); err != nil {
+					fmt.Fprintf(os.Stderr, "%s\n", err)
+				}
+			}
 		}(url)
 	}
 
