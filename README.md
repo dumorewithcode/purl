@@ -65,7 +65,7 @@ I recommend playing with the concurrency setting and turning on/off any live aud
 
 ## Installation:
 ```
-$ go get github.com/a3kSec/purl
+$ go get -u github.com/a3kSec/purl
 ```
 <br />
 
