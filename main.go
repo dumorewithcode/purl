@@ -148,7 +148,7 @@ func main() {
 	)
 
 	flag.Var(&headers, "h", "specify header to include in request")
-	flag.IntVar(&concurrency, "c", 1, "set the concurrency. Default value 1")
+	flag.IntVar(&concurrency, "c", 1, "set the concurrency")
 	flag.StringVar(&proxy, "p", "", "specify http proxy")
 	flag.StringVar(&cookie, "b", "", "specify cookie VALUE to include in request")
 	flag.StringVar(&cookieFromFile, "B", "", "specify file that contains the cookie VALUE to include in request. Reads up to 1mb of data")
