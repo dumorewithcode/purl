@@ -47,7 +47,7 @@ $ purl -help
 | Flag | Description | Example |
 |------|-------------|---------|
 | `-p` | specify http proxy | `cat resovled.txt \| purl -p http://127.0.0.1:8080` |
-| `-h` | specify header/s to include in request. Supports duplicate flags | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -h "X-Forwarded-For: example.com" -h "X-Wife: divorced"` |
+| `-h` | specify header/s to include in every request. Supports duplicate flags | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -h "X-Forwarded-For: example.com" -h "X-Wife: divorced"` |
 | `-H` | specify the path to the file which contains a list of headers to use. This will resend the request but with the next header in the file. Use -h flag for headers you want to include in every request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -H headers.txt` |
 | `-b` | specify cookie VALUE to include in request | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -b "cookie value"` |
 | `-B` | specify file path that contains the cookie VALUE to include in request. Reads up to 1mb of data | `cat resovled.txt \| purl -p http://127.0.0.1:8080 -B cookie.txt` |
