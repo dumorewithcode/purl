@@ -111,15 +111,20 @@ func (r requestData) makeRequest(url string) {
 
 	if len(r.headers) > 0 {
 		for _, header := range r.headers {
-			//Split by first occurrence of colon(:), any other colons after that will be ignored
-			name, value := header[:strings.IndexByte(header, ':')], header[strings.IndexByte(header, ':')+1:]
-			req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
+			if strings.Contains(header, ":") {
+				//Split by first occurrence of colon(:), any other colons after that will be ignored
+				name, value := header[:strings.IndexByte(header, ':')], header[strings.IndexByte(header, ':')+1:]
+				req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
+			}
 		}
 	}
 
 	if r.headerFromFile != "" {
-		name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
-		req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
+		if strings.Contains(r.headerFromFile, ":") {
+			//Split by first occurrence of colon(:), any other colons after that will be ignored
+			name, value := r.headerFromFile[:strings.IndexByte(r.headerFromFile, ':')], r.headerFromFile[strings.IndexByte(r.headerFromFile, ':')+1:]
+			req.Header.Set(strings.TrimSpace(name), strings.TrimSpace(value))
+		}
 	}
 
 	resp, err := r.client.Do(req)
