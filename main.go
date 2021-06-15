@@ -162,7 +162,6 @@ func main() {
 	proxyUrl, err := url.Parse(proxy)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
-		os.Exit(1)
 	}
 
 	// timeout Stolen from httprobe. Thanks Tom :)
@@ -228,6 +227,7 @@ func main() {
 					fmt.Fprintf(os.Stderr, "%s\n", err)
 				}
 			}
+			req.makeRequest(url)
 		}(url)
 	}
 
