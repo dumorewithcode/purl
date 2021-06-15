@@ -178,6 +178,9 @@ func main() {
 			Proxy:             http.ProxyURL(proxyUrl),
 			ForceAttemptHTTP2: true,
 		},
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
 	}
 
 	req := requestData{
