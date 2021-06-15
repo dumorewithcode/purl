@@ -97,6 +97,7 @@ func (r requestData) makeRequest(url string) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
+		return
 	}
 
 	req.Header.Set("User-Agent", getUserAgent())
@@ -170,8 +171,11 @@ func main() {
 	client := &http.Client{
 		Timeout: to,
 		Transport: &http.Transport{
+			MaxIdleConns:      30,
+			DisableKeepAlives: true,
 			DialContext: (&net.Dialer{
-				Timeout: to,
+				Timeout:   to,
+				KeepAlive: time.Second,
 			}).DialContext,
 			IdleConnTimeout:   time.Second,
 			TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
