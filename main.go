@@ -166,7 +166,7 @@ func main() {
 	}
 
 	// timeout Stolen from httprobe. Thanks Tom :)
-	to := time.Duration(timeout * 1000000)
+	to := time.Duration(timeout * 10000000)
 
 	client := &http.Client{
 		Timeout: to,
