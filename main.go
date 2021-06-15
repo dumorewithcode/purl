@@ -173,10 +173,11 @@ func main() {
 			DialContext: (&net.Dialer{
 				Timeout: to,
 			}).DialContext,
-			IdleConnTimeout:   time.Second,
-			TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
-			Proxy:             http.ProxyURL(proxyUrl),
-			ForceAttemptHTTP2: true,
+			IdleConnTimeout:       time.Second,
+			TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
+			Proxy:                 http.ProxyURL(proxyUrl),
+			ResponseHeaderTimeout: (to / 2),
+			ForceAttemptHTTP2:     true,
 		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
