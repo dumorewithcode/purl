@@ -35,6 +35,7 @@ Examples:
 $ cat urls.txt | purl -p http://127.0.0.1:8080
 $ cat domains.txt | httprobe --prefer-https -c 50 | waybackurls | purl -p http://127.0.0.1:8080
 $ cat resolved.txt | gau -b png,jpg,gif | purl -p http://127.0.0.1:8080
+$ cat urls.txt | httpx -follow-redirects -mc 403 -silent | purl -p http://127.0.0.1:8080 -h "X-Custom-IP-Authorization: 127.0.0.1" -H 403-bypass.txt -c 50
 ```
 <br />
 
