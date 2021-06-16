@@ -65,32 +65,17 @@ func getUserAgent() string {
 }
 
 func getCookieFromFile(file string) string {
-	value := ""
+	cookie := ""
 
 	if file != "" {
-		f, err := os.Open(file)
+		value, err := ioutil.ReadFile(file)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s\n", err)
 			os.Exit(1)
 		}
-		defer f.Close()
-
-		reader := bufio.NewReader(f)
-		//read up to 1mb of data
-		buffer := make([]byte, 1024*1024)
-
-		for {
-			str, err := reader.Read(buffer)
-			if err != nil {
-				if err != io.EOF {
-					fmt.Fprintf(os.Stderr, "%s\n", err)
-				}
-				break
-			}
-			value = string(buffer[0:str])
-		}
+		cookie = string(value)
 	}
-	return value
+	return cookie
 }
 
 func (r requestData) makeRequest(url string) {
@@ -139,20 +124,20 @@ func (r requestData) makeRequest(url string) {
 
 func main() {
 	var (
-		concurrency    int
-		proxy          string
-		cookie         string
-		cookieFromFile string
-		headers        duplicateFlags
-		headersFile    string
-		timeout        int
+		concurrency int
+		proxy       string
+		cookie      string
+		cookieFile  string
+		headers     duplicateFlags
+		headersFile string
+		timeout     int
 	)
 
 	flag.Var(&headers, "h", "specify header to include in request")
 	flag.IntVar(&concurrency, "c", 1, "set the concurrency")
 	flag.StringVar(&proxy, "p", "", "specify http proxy")
 	flag.StringVar(&cookie, "b", "", "specify cookie VALUE to include in request")
-	flag.StringVar(&cookieFromFile, "B", "", "specify file that contains the cookie VALUE to include in request. Reads up to 1mb of data")
+	flag.StringVar(&cookieFile, "B", "", "specify file that contains the cookie VALUE to include in request")
 	flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
 	flag.IntVar(&timeout, "t", 10000, "set the timeout in milliseconds")
 
@@ -182,6 +167,7 @@ func main() {
 			Proxy:             http.ProxyURL(proxyUrl),
 			ForceAttemptHTTP2: true,
 		},
+		//Ignore redirects
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
 		},
@@ -192,7 +178,7 @@ func main() {
 		headers:        headers,
 		headersFile:    headersFile,
 		cookie:         cookie,
-		cookieFromFile: getCookieFromFile(cookieFromFile),
+		cookieFromFile: getCookieFromFile(cookieFile),
 	}
 
 	//Create buffer(queue) and set the size to the concurrency value
@@ -225,7 +211,7 @@ func main() {
 
 				sc := bufio.NewScanner(file)
 
-				//Send the same request for each header in the headers file(-H flag)
+				//Resend the same url(request) but with the next header in the headers file(-H flag)
 				for sc.Scan() {
 					req.headerFromFile = sc.Text()
 					req.makeRequest(url)
