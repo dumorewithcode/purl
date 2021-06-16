@@ -68,10 +68,16 @@ func getCookieFromFile(file string) string {
 	cookie := ""
 
 	if file != "" {
-		value, err := ioutil.ReadFile(file)
+		f, err := os.Open(file)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s\n", err)
 			os.Exit(1)
+		}
+		defer f.Close()
+
+		value, err := ioutil.ReadAll(f)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%s\n", err)
 		}
 		cookie = string(value)
 	}
