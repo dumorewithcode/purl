@@ -154,6 +154,7 @@ func main() {
 	proxyUrl, err := url.Parse(proxy)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
+		os.Exit(1)
 	}
 
 	// timeout Stolen from httprobe. Thanks Tom :)
@@ -162,8 +163,8 @@ func main() {
 	client := &http.Client{
 		Timeout: to,
 		Transport: &http.Transport{
-			MaxIdleConns:      30,
-			DisableKeepAlives: true,
+			MaxIdleConnsPerHost: -1,
+			DisableKeepAlives:   true,
 			DialContext: (&net.Dialer{
 				Timeout:   to,
 				KeepAlive: time.Second,
