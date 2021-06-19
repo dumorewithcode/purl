@@ -32,7 +32,7 @@ Wrote this with the intent to learn go and because I wanted it and couldn't find
 Examples:
 
 ```bash
-$ cat urls.txt | purl -p http://127.0.0.1:8080
+$ cat urls.txt | purl -p http://127.0.0.1:8080 -c 50
 $ cat domains.txt | httprobe --prefer-https -c 50 | waybackurls | purl -p http://127.0.0.1:8080
 $ cat resolved.txt | gau -b png,jpg,gif | purl -p http://127.0.0.1:8080
 $ cat urls.txt | httpx -follow-redirects -mc 403 -silent | purl -p http://127.0.0.1:8080 -h "X-Bug-Bounty: hunter" -h "X-Custom-IP-Authorization: 127.0.0.1" -H 403-bypass.txt -c 50
