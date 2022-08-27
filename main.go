@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"math/rand"
 	"net"
 	"net/http"
@@ -36,7 +37,6 @@ func (dupes *duplicateFlags) Set(value string) error {
 	return nil
 }
 
-//getUserAgent() Stolen from gau. Thanks Corben :)
 func getUserAgent() string {
 	userAgents := []string{
 		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:40.0) Gecko/20100101 Firefox/40.0",
@@ -145,7 +145,7 @@ func main() {
 	flag.StringVar(&cookie, "b", "", "specify cookie VALUE to include in request")
 	flag.StringVar(&cookieFile, "B", "", "specify file that contains the cookie VALUE to include in request")
 	flag.StringVar(&headersFile, "H", "", "specify list of headers. This sends each header 1 at a time to the same request")
-	flag.IntVar(&timeout, "t", 10000, "set the timeout in milliseconds")
+	flag.IntVar(&timeout, "t", 1000, "set the timeout in milliseconds")
 
 	flag.Parse()
 
@@ -157,22 +157,21 @@ func main() {
 		os.Exit(1)
 	}
 
-	// timeout Stolen from httprobe. Thanks Tom :)
-	to := time.Duration(timeout * 10000000)
+	to := time.Duration(timeout * 100000)
 
 	client := &http.Client{
 		Timeout: to,
 		Transport: &http.Transport{
-			MaxIdleConnsPerHost: -1,
+			MaxIdleConns:        concurrency,
+			MaxIdleConnsPerHost: concurrency,
+			MaxConnsPerHost:     int(math.Round(float64(concurrency) * 0.10)),
 			DisableKeepAlives:   true,
 			DialContext: (&net.Dialer{
-				Timeout:   to,
-				KeepAlive: time.Second,
+				Timeout: to,
 			}).DialContext,
-			IdleConnTimeout:   time.Second,
-			TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
-			Proxy:             http.ProxyURL(proxyUrl),
-			ForceAttemptHTTP2: true,
+			IdleConnTimeout: time.Second,
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			Proxy:           http.ProxyURL(proxyUrl),
 		},
 		//Ignore redirects
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
