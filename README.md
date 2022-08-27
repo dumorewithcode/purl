@@ -17,12 +17,6 @@
   <a href="https://github.com/a3kSec/purl#download"><img src="https://img.shields.io/badge/platform-any-ec2eb4.svg?style=flat"></a>
 </p>
 
-<p align="center">
-  <a href="#usage">Usage</a>
-</p>
-<br />
-
-<br />
 <br />
 
 ## Usage:
