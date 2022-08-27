@@ -37,6 +37,6 @@ $ purl -help
 <br />
 
 ```
-$ go get -u github.com/a3kSec/purl
+$ go get -u github.com/dumorewithcode/purl
 ```
 <br />
